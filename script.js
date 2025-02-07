@@ -71,8 +71,8 @@ class Player {
 class Game {
     constructor() {
         this.deck = new Deck();
-        this.player1 = new Player("Player 1");
-        this.player2 = new Player("Player 2");
+        this.player1 = new Player("Diva 1");
+        this.player2 = new Player("Diva 2");
         this.dealCards();
         this.gameLog = document.querySelector(".log-content");
         this.replayButton = document.getElementById("replay-button");
@@ -102,12 +102,12 @@ class Game {
 
         if (card1.getValue() > card2.getValue()) {
             this.player1.addPoint();
-            logEntry.textContent += " - Player 1 wins the round!";
+            logEntry.textContent += " - Diva 1 wins the battle!!";
         } else if (card1.getValue() < card2.getValue()) {
             this.player2.addPoint();
-            logEntry.textContent += " - Player 2 wins the round!";
+            logEntry.textContent += " - Diva 2 wins the battle!!";
         } else {
-            logEntry.textContent += " - It's a tie! No points awarded.";
+            logEntry.textContent += " - Tie! No one wins!!.";
         }
         
         this.gameLog.scrollTop = this.gameLog.scrollHeight;
@@ -127,16 +127,16 @@ class Game {
     endGame() {
         let result = "";
         if (this.player1.score > this.player2.score) {
-            result = `${this.player1.name} wins the game!`;
+            result = `${this.player1.name} wins the war!!`;
         } else if (this.player1.score < this.player2.score) {
-            result = `${this.player2.name} wins the game!`;
+            result = `${this.player2.name} wins the war!!`;
         } else {
-            result = "The game is a tie!";
+            result = "Stalemate!! lame...";
         }
 
         // this logs the final result
         let logEntry = document.createElement("div");
-        logEntry.textContent = `Game Over! ${result}`;
+        logEntry.textContent = `Game Over!! ${result}`;
         this.gameLog.appendChild(logEntry);
 
         
@@ -144,8 +144,8 @@ class Game {
     }
 
     resetGame() {
-        this.player1 = new Player("Player 1");
-        this.player2 = new Player("Player 2");
+        this.player1 = new Player("Diva 1");
+        this.player2 = new Player("Diva 2");
         this.deck = new Deck();
         this.dealCards();
         this.gameLog.innerHTML = ""; // Clear the log
