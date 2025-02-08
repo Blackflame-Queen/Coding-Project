@@ -117,7 +117,6 @@ class Game {
         this.gameLog.insertBefore(logEntry, this.gameLog.firstChild);
         this.gameLog.scrollTop = 0;
     
-        // Log to console
         console.log(`${this.player1.name} plays: ${card1.toString()}`);
         console.log(`${this.player2.name} plays: ${card2.toString()}`);
         console.log(roundResult);
@@ -152,7 +151,6 @@ class Game {
         
         this.replayButton.disabled = false;
     
-        // Log the final result to console
         console.log(`Game Over!! ${result}`);
     }
 
