@@ -137,12 +137,12 @@ class Game {
         } else {
             result = "Stalemate!! lame...";
         }
-
-        // this logs the final result
+        
         let logEntry = document.createElement("div");
-        logEntry.textContent = `Game Over!! ${result}`;
-        this.gameLog.appendChild(logEntry);
-
+        logEntry.innerHTML = `<strong>Game Over!!</strong> ${result}`;
+        
+        // this'll log the result at the top
+        this.gameLog.insertBefore(logEntry, this.gameLog.firstChild);
         
         this.replayButton.disabled = false;
     }
