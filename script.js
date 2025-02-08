@@ -89,28 +89,32 @@ class Game {
     playRound() {
         const card1 = this.player1.playCard();
         const card2 = this.player2.playCard();
-
+    
         document.querySelector("#player1 .card-display").textContent = card1.toString();
         document.querySelector("#player2 .card-display").textContent = card2.toString();
         
         document.querySelector("#player1 .score").textContent = `Score: ${this.player1.score}`;
         document.querySelector("#player2 .score").textContent = `Score: ${this.player2.score}`;
-
+    
         let logEntry = document.createElement("div");
-        logEntry.textContent = `${this.player1.name} plays: ${card1.toString()} | ${this.player2.name} plays: ${card2.toString()}`;
-        this.gameLog.appendChild(logEntry);
-
+        logEntry.style.marginBottom = "10px"; 
+        logEntry.innerHTML = `<strong>${this.player1.name} plays:</strong> ${card1.toString()}<br>
+                              <strong>${this.player2.name} plays:</strong> ${card2.toString()}<br>`;
+        
         if (card1.getValue() > card2.getValue()) {
             this.player1.addPoint();
-            logEntry.textContent += " - Diva 1 wins the battle!!";
+            logEntry.innerHTML += `<strong>${this.player1.name}</strong> wins the battle!!<br>`;
         } else if (card1.getValue() < card2.getValue()) {
             this.player2.addPoint();
-            logEntry.textContent += " - Diva 2 wins the battle!!";
+            logEntry.innerHTML += `<strong>${this.player2.name}</strong> wins the battle!!<br>`;
         } else {
-            logEntry.textContent += " - Tie! No one wins!!.";
+            logEntry.innerHTML += `It's a tie! No one wins!!<br>`;
         }
+    
+        logEntry.innerHTML += `Score: ${this.player1.score} to ${this.player2.score}`;
         
-        this.gameLog.scrollTop = this.gameLog.scrollHeight;
+        this.gameLog.insertBefore(logEntry, this.gameLog.firstChild);
+        this.gameLog.scrollTop = 0;
     }
 
     playGame() {
