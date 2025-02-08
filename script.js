@@ -98,23 +98,30 @@ class Game {
     
         let logEntry = document.createElement("div");
         logEntry.style.marginBottom = "10px"; 
-        logEntry.innerHTML = `<strong>${this.player1.name} plays:</strong> ${card1.toString()}<br>
-                              <strong>${this.player2.name} plays:</strong> ${card2.toString()}<br>`;
+        logEntry.innerHTML = `${this.player1.name} plays: ${card1.toString()}<br>
+                              ${this.player2.name} plays: ${card2.toString()}<br>`;
         
+        let roundResult;
         if (card1.getValue() > card2.getValue()) {
             this.player1.addPoint();
-            logEntry.innerHTML += `<strong>${this.player1.name}</strong> wins the battle!!<br>`;
+            roundResult = `${this.player1.name} wins the battle!!`;
         } else if (card1.getValue() < card2.getValue()) {
             this.player2.addPoint();
-            logEntry.innerHTML += `<strong>${this.player2.name}</strong> wins the battle!!<br>`;
+            roundResult = `${this.player2.name} wins the battle!!`;
         } else {
-            logEntry.innerHTML += `It's a tie! No one wins!!<br>`;
+            roundResult = `Tie! No one wins!!`;
         }
     
-        logEntry.innerHTML += `Score: ${this.player1.score} to ${this.player2.score}`;
+        logEntry.innerHTML += roundResult + `<br>Score: ${this.player1.score} to ${this.player2.score}`;
         
         this.gameLog.insertBefore(logEntry, this.gameLog.firstChild);
         this.gameLog.scrollTop = 0;
+    
+        // Log to console
+        console.log(`${this.player1.name} plays: ${card1.toString()}`);
+        console.log(`${this.player2.name} plays: ${card2.toString()}`);
+        console.log(roundResult);
+        console.log(`Score: ${this.player1.score} to ${this.player2.score}`);
     }
 
     playGame() {
@@ -137,14 +144,16 @@ class Game {
         } else {
             result = "Stalemate!! lame...";
         }
-        
+    
         let logEntry = document.createElement("div");
-        logEntry.innerHTML = `<strong>Game Over!!</strong> ${result}`;
+        logEntry.innerHTML = `Game Over!! ${result}`;
         
-        // this'll log the result at the top
         this.gameLog.insertBefore(logEntry, this.gameLog.firstChild);
         
         this.replayButton.disabled = false;
+    
+        // Log the final result to console
+        console.log(`Game Over!! ${result}`);
     }
 
     resetGame() {
