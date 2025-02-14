@@ -1,7 +1,6 @@
 // here's the suits and ranks for the cards
 const suits = ["Spades ♠️", "Hearts ❤️", "Diamonds ♦️", "Clubs ♣️"];
 const ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];
-const DEAL_CARD_TIMEOUT = 2000;
 
 // this card class represents 1 card
 class Card {
@@ -136,7 +135,7 @@ class Game {
             } else {
                 this.playRound();
             }
-        }, DEAL_CARD_TIMEOUT); // this timer starts a round every 2 seconds
+        }, 2000); // this timer starts a round every 2 seconds
     }
 
     endGame() {
